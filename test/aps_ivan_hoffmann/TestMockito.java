@@ -24,7 +24,7 @@ public class TestMockito {
 	@Test
 		public void testMockGetEndereco900000() {
 			CorreioService correioServiceMock = Mockito.mock(CorreioService.class);
-			when(correioServiceMock.buscaEndereco('9000000')).thenReturn('Porto Alegre');
+			when(correioServiceMock.buscaEndereco('9000000')).thenReturn("Porto Alegre");
 			Assert.assertEquals('Porto Alegre', correioServiceMock.buscaEndereco());		
 			
 		}
@@ -33,7 +33,7 @@ public class TestMockito {
 		public void testMockGetEndereco800000() {
 			
 			CorreioService correioServiceMock = Mockito.mock(CorreioService.class);
-			when(correioServiceMock.buscaEndereco('8000000')).thenReturn('Av. Assis Brasil');
+			when(correioServiceMock.buscaEndereco('8000000')).thenReturn("Av. Assis Brasil");
 			Assert.assertEquals('Av. Assis Brasil', correioServiceMock.buscaEndereco());
 			
 		}

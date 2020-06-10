@@ -48,14 +48,16 @@ package aps_ivan_hoffmann;
 	         WebElement campoEndereco = driver.findElement(By.id("endereco"));
 	         WebElement campoSexo = driver.findElement(By.id("sexo"));
 	         WebElement campoIdade= driver.findElement(By.id("idade"));
-	         WebElement submit = driver.findElement(By.id("submit"));
+	         WebElement salvar = driver.findElement(By.id("botao_somar"));
 	         campoNome.sendKeys("teste");
 	         campoEndereco.sendKeys("123");
 	         campoSexo.sendKeys("Masculino");
 	         campoIdade.sendKeys("18");
-	         submit.click();
-	         String codigProximaPagina =  driver.getPageSource();
-	         Assert.assertTrue(codigProximaPagina.contains("Cadastro realizado com sucesso"));
+	         salvar.click();
+	         Alert alert = driver.switchTo().alert();
+	         
+	         Assert.assertTrue(alert.getText().equals("Cadastro realizado com sucesso"));
+	         alert.accept();
 	    }
 	     
 	     @Test
@@ -66,14 +68,16 @@ package aps_ivan_hoffmann;
 		         WebElement campoEndereco = driver.findElement(By.id("endereco"));
 		         WebElement campoSexo = driver.findElement(By.id("sexo"));
 		         WebElement campoIdade= driver.findElement(By.id("idade"));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
 		         campoNome.sendKeys("teste");
 		         campoEndereco.sendKeys("Avenida Suarez, 185");
 		         campoSexo.sendKeys("Feminino");
 		         campoIdade.sendKeys("18");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Cadastro realizado com sucesso"));
+		         salvar.click();
+		         Alert alert = driver.switchTo().alert();
+		         
+		         Assert.assertTrue(alert.getText().equals("Cadastro realizado com sucesso"));
+		         alert.accept();
 		    }
 	     
 	     @Test
@@ -84,51 +88,53 @@ package aps_ivan_hoffmann;
 		         WebElement campoEndereco = driver.findElement(By.id(""));
 		         WebElement campoSexo = driver.findElement(By.id(""));
 		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
+		         WebElement campoResultado= driver.findElement(By.id("resultado"));
 		         campoNome.sendKeys("");
 		         campoEndereco.sendKeys("Avenida Suarez, 185");
 		         campoSexo.sendKeys("Masculino");
 		         campoIdade.sendKeys("18");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Preencha o campo nome"));
+		         salvar.click();
+		         String resultado =  "Preencha o campo nome";
+		         Assert.assertTrue(campoResultado.getText().equals(resultado));
 		    }
 	     
 	     @Test
 		    public void testLoginErroEnderecoVazio(){
 		        driver.get("//home//ivan//Desktop//aps_ivan_hoffmann//src//main//trabalho2-1.html");
 		        
-		        WebElement campoNome = driver.findElement(By.id(""));
-		         WebElement campoEndereco = driver.findElement(By.id(""));
-		         WebElement campoSexo = driver.findElement(By.id(""));
-		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		        WebElement campoNome = driver.findElement(By.id("nome"));
+		         WebElement campoEndereco = driver.findElement(By.id("endereco"));
+		         WebElement campoSexo = driver.findElement(By.id("sexo"));
+		         WebElement campoIdade= driver.findElement(By.id("idade"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
+		         WebElement campoResultado= driver.findElement(By.id("resultado"));
 		         campoNome.sendKeys("Ivan");
 		         campoEndereco.sendKeys("");
 		         campoSexo.sendKeys("Masculino");
 		         campoIdade.sendKeys("18");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Preencha o campo endereco"));
+		         salvar.click();
+		         String resultado =  "Preencha o campo endereco";
+		         Assert.assertTrue(campoResultado.getText().equals(resultado));
 		    }
 	     
 	     @Test
-		    public void testLoginErroSexoVazio(){
-		        driver.get("//home//ivan//Desktop//aps_ivan_hoffmann//src//main//trabalho2-1.html");
-		        
-		        WebElement campoNome = driver.findElement(By.id(""));
-		         WebElement campoEndereco = driver.findElement(By.id(""));
-		         WebElement campoSexo = driver.findElement(By.id(""));
-		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
-		         campoNome.sendKeys("Ivan");
-		         campoEndereco.sendKeys("Avenida Suarez, 185");
-		         campoSexo.sendKeys("");
-		         campoIdade.sendKeys("18");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Selecione um valor para o campo sexo"));
-		    }
+	     	public void testSexoVazio(){
+				
+	 		WebElement campoNome = driver.findElement(By.id("nome"));
+	 		WebElement campoEndereco = driver.findElement(By.id("endereco"));
+	 		WebElement campoSexo = driver.findElement(By.id("sexo"));
+	 		WebElement campoIdade= driver.findElement(By.id("idade"));
+	 		WebElement salvar = driver.findElement(By.id("botao_somar"));
+	 		WebElement campoResultado= driver.findElement(By.id("resultado"));
+	 		campoNome.sendKeys("teste");
+	 		campoEndereco.sendKeys("Avenida Suarez, 185");
+	 		campoSexo.sendKeys("");
+	 		campoIdade.sendKeys("18");
+	 		salvar.click();
+	 		String resultado =  "Selecione um valor para o campo sexo";
+	 		Assert.assertTrue(campoResultado.getText().equals(resultado));
+	 }
 	     
 	     @Test
 		    public void testLoginErroIdadeVazio(){
@@ -138,14 +144,15 @@ package aps_ivan_hoffmann;
 		         WebElement campoEndereco = driver.findElement(By.id(""));
 		         WebElement campoSexo = driver.findElement(By.id(""));
 		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
+		         WebElement campoResultado= driver.findElement(By.id("resultado"));
 		         campoNome.sendKeys("Ivan");
 		         campoEndereco.sendKeys("Avenida Suarez, 185");
 		         campoSexo.sendKeys("Masculino");
 		         campoIdade.sendKeys("");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Preencha o campo idade com valores acima de 0"));
+		         salvar.click();
+		         String resultado =  "Preencha o campo idade com valores acima de 0";
+		         Assert.assertTrue(campoResultado.getText().equals(resultado));
 		    }
 	     
 	     @Test
@@ -156,14 +163,15 @@ package aps_ivan_hoffmann;
 		         WebElement campoEndereco = driver.findElement(By.id(""));
 		         WebElement campoSexo = driver.findElement(By.id(""));
 		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
+		         WebElement campoResultado= driver.findElement(By.id("resultado"));
 		         campoNome.sendKeys("Ivan");
 		         campoEndereco.sendKeys("Avenida Suarez, 185");
 		         campoSexo.sendKeys("Masculino");
 		         campoIdade.sendKeys("-18");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Preencha o campo idade com valores acima de 0"));
+		         salvar.click();
+		         String resultado =  "Preencha o campo idade com valores acima de 0";
+		         Assert.assertTrue(campoResultado.getText().equals(resultado));
 		    }
 	     
 	     @Test
@@ -174,14 +182,15 @@ package aps_ivan_hoffmann;
 		         WebElement campoEndereco = driver.findElement(By.id(""));
 		         WebElement campoSexo = driver.findElement(By.id(""));
 		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
+		         WebElement campoResultado= driver.findElement(By.id("resultado"));
 		         campoNome.sendKeys("Ivan");
 		         campoEndereco.sendKeys("Avenida Suarez, 185");
 		         campoSexo.sendKeys("Masculino");
 		         campoIdade.sendKeys("0");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Preencha o campo idade com valores acima de 0"));
+		         salvar.click();
+		         String resultado =  "Preencha o campo idade com valores acima de 0";
+		         Assert.assertTrue(campoResultado.getText().equals(resultado));
 		    }
 	     
 	     @Test
@@ -192,14 +201,15 @@ package aps_ivan_hoffmann;
 		         WebElement campoEndereco = driver.findElement(By.id(""));
 		         WebElement campoSexo = driver.findElement(By.id(""));
 		         WebElement campoIdade= driver.findElement(By.id(""));
-		         WebElement submit = driver.findElement(By.id("submit"));
+		         WebElement salvar = driver.findElement(By.id("botao_somar"));
+		         WebElement campoResultado= driver.findElement(By.id("resultado"));
 		         campoNome.sendKeys("Ivan");
 		         campoEndereco.sendKeys("Avenida Suarez, 185");
 		         campoSexo.sendKeys("Masculino");
 		         campoIdade.sendKeys("ABC");
-		         submit.click();
-		         String codigProximaPagina =  driver.getPageSource();
-		         Assert.assertTrue(codigProximaPagina.contains("Preencha o campo idade, somente com numeros"));
+		         salvar.click();
+		         String resultado =  "Preencha o campo idade, somente com numeros";
+		         Assert.assertTrue(campoResultado.getText().equals(resultado));
 		    }
 	     
 	     @Test

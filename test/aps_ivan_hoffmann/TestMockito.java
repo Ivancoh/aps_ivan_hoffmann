@@ -1,43 +1,32 @@
 package aps_ivan_hoffmann;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import junit.framework.Assert;
-
-import static org.mockito.Mockito.*;
-
 @RunWith(MockitoJUnitRunner.class)
-public class TestMockito {
+public class MockitoTest {
 
 	private CorreioService correioServiceMock;
-
+	
 	@Before
 	public void init() {
-		CorreioService correioServiceMock = Mockito.mock(CorreioService.class);
+		correioServiceMock = Mockito.mock(CorreioService.class);
 	}
-
+	
 	@Test
-		public void testMockGetEndereco900000() {
-			CorreioService correioServiceMock = Mockito.mock(CorreioService.class);
-			when(correioServiceMock.buscaEndereco('9000000')).thenReturn("Porto Alegre");
-			Assert.assertEquals('Porto Alegre', correioServiceMock.buscaEndereco());		
-			
-		}
-
+	public void testMockEndereco900000() {
+		
+		when(correioServiceMock.buscaEndereco("900000")).thenReturn("Porto Alegre");
+	
+		Assert.assertEquals("Porto Alegre", correioServiceMock.buscaEndereco("900000"));		
+		
+	}
+	
 	@Test
-		public void testMockGetEndereco800000() {
-			
-			CorreioService correioServiceMock = Mockito.mock(CorreioService.class);
-			when(correioServiceMock.buscaEndereco('8000000')).thenReturn("Av. Assis Brasil");
-			Assert.assertEquals('Av. Assis Brasil', correioServiceMock.buscaEndereco());
-			
-		}
-
-}
-
+	public void testMockEndereco800000() {
+				
+		when(correioServiceMock.buscaEndereco("800000")).thenReturn("Av. Assis Brasil");
+		
+		Assert.assertEquals("Av. Assis Brasil", correioServiceMock.buscaEndereco("800000"));
+		
+	}
+	
+	
 }
